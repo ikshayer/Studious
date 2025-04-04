@@ -7,10 +7,32 @@ module.exports = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+	screens: {
+		'sm': '640px',
+		// => @media (min-width: 640px) { ... }
+
+		'profileSm': '865px',
+  
+		'md': '768px',
+		// => @media (min-width: 768px) { ... }
+  
+		'lg': '915px',
+		// => @media (min-width: 1024px) { ... }
+
+		'profileMd': '1108px',
+  
+		'xl': '1280px',
+		// => @media (min-width: 1280px) { ... }
+  
+		'2xl': '1536px',
+		// => @media (min-width: 1536px) { ... }
+	},
   	extend: {
 		fontFamily: {
 			satoshi: ['Satoshi', 'sans-serif'],
 			inter: ['Inter', 'sans-serif'],
+			cyber: ['VT323', 'sans-serif'],
+			arial: ['Arial', 'sans-serif'],
 		},
   		colors: {
   			background: 'hsl(var(--background))',
@@ -68,7 +90,16 @@ module.exports = {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
-  		}
+  		},
+		  animation: {
+			marquee: "marquee 10s linear infinite",
+		  },
+		  keyframes: {
+			marquee: {
+			  "0%": { transform: "translateX(100%)" },
+			  "100%": { transform: "translateX(-250%)" },
+			},
+		  },
   	}
   },
   plugins: [require("tailwindcss-animate")],

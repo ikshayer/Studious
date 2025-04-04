@@ -1,11 +1,19 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+html {
+  height: 100vh
+}
+
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  background-image: url('/images/background-2.svg');
+  
+  
 }
 
 .main {
@@ -13,14 +21,15 @@ body {
   min-height: 100vh;
   position: fixed;
   display: flex;
+  flex: 1;
   justify-content: center;
   padding: 120px 24px 160px 24px;
   pointer-events: none;
 }
 
 .main:before {
-  background: radial-gradient(circle, rgba(2, 0, 36, 0) 0, #fafafa 100%);
   position: absolute;
+  background: radial-gradient(circle, rgba(255, 251, 249, 0) 0, #ffffffcc 100%);
   content: "";
   z-index: 2;
   width: 100%;
@@ -39,8 +48,41 @@ body {
   filter: invert(1);
 }
 
+.grid-container{
+  position: relative;
+  overflow: visible;
+  transition: all 0.2s ease;
+  border: #ffffffcc;
+  
+}
+
+.react-grid-item{
+  
+  transition: .4s ease 0s;
+  overflow-y: hidden;
+  position: absolute;
+  user-select: none;
+  border-radius: 16px;
+}
+.react-grid-placeholder {
+  background: rgba(42, 42, 42, 0.2);
+  transition: .4s ease 0s;
+  border-radius: 16px;
+  outline: none;
+  user-select: none;
+  position: absolute;
+
+}
+.react-grid-item.cssTransforms {
+  transition-property: transform,width,height;
+}
+.react-grid-item.dragging {
+  transition: none; /* Faster transition for the dragging item */
+}
+
+
 .app {
-  @apply relative z-10 flex justify-center items-center flex-col max-w-7xl mx-auto sm:px-16 px-6;
+  @apply relative z-10 flex items-center flex-col max-w-7xl mx-auto sm:px-16 px-6 z-10 min-h-lvh pb-40;
 }
 
 .image-background {
@@ -136,8 +178,16 @@ body {
   @apply rounded-full border-[2px] border-black bg-black py-1.5 px-5 text-white transition-all hover:bg-white hover:text-black text-center text-sm font-inter flex items-center justify-center;
 }
 
+.black_btn_borderless {
+  @apply rounded-lg border border-black bg-black py-1.5 text-white transition-all hover:bg-white hover:text-black text-center text-sm font-inter;
+}
+
 .outline_btn {
   @apply rounded-full border-[2px] border-black bg-white py-1.5 px-5 text-black transition-all hover:bg-black hover:text-white text-center text-sm font-inter flex items-center justify-center;
+}
+
+.outline_btn_borderless {
+  @apply rounded-lg border bg-white py-1.5 text-black transition-all hover:bg-black hover:text-white text-center text-sm font-inter;
 }
 
 .black_gradient {
@@ -146,6 +196,14 @@ body {
 
 .desc {
   @apply mt-5 text-lg text-gray-600 sm:text-xl max-w-2xl;
+}
+
+.glass_gradient {
+  @apply bg-gradient-to-tr from-zinc-200/[0.7] from-5% via-zinc-300/[0.7] via-30% to-zinc-200/[0.7] to-60%;
+}
+
+.shadow_gradient {
+  @apply bg-gradient-to-b from-stone-300/[0.8] from-5% to-white to-60% opacity-[0.8];
 }
 
 @layer base {
@@ -171,4 +229,14 @@ body {
 
 .flex-between {
   @apply flex justify-between items-center;
+}
+
+
+.prompt_layout {
+  @apply space-y-6 py-8 sm:columns-2 sm:gap-6 xl:columns-1;
+}
+
+/* Feed Component */
+.feed {
+  @apply flex justify-center items-center flex-col;
 }

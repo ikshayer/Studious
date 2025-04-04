@@ -1,28 +1,15 @@
-'use client'
+import { getServerSession } from 'next-auth';
+import { redirect } from 'next/navigation';
+import { authOptions } from '../api/auth/[...nextauth]/route';
+import CreateSession from './CreateSession';
 
-import Create from "@components/Create"
-import { useState } from "react"
+export default async function CreateSessionPage() {
+    const session = await getServerSession(authOptions);
 
-function CreateSession(){
-
-    const [post, setPost] = useState({})
-    const [isSubmitting, setSubmitting] = useState(false)
-
-    const handleSubmitting = () => {
-
+    if (!session) {
+        redirect('/');
+        return null;
     }
 
-
-
-    return(
-        <Create
-        type='Create'
-        post={post}
-        setPost={setPost}
-        submitting = {isSubmitting}
-        handleSubmitting={handleSubmitting}
-        />
-    )
+    return <CreateSession session={session} />;
 }
-
-export default CreateSession

@@ -6,15 +6,15 @@ const sessionSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
     },   
-    Location: {
+    location: {
         type: String
     },
     zoomLink: {
         type: String,
-        match: [/^https:\/\/zoom\.us\/(j|wc)\/\d+\/?(?:\?pwd=[a-zA-Z0-9]+)?$/, "Please enter a valid link"]
+        match: [/^https:\/\/(zoom\.us|us05web\.zoom\.us)\/(j|wc)\/\d{9,11}(?:\?pwd=[a-zA-Z0-9]+)?\.\d$/, "Please enter a valid link"],
     },
     date:{
-        type: String,
+        type: Date,
         required: [true, "Date has to be added"]
     },
     time: {
@@ -28,9 +28,14 @@ const sessionSchema = new mongoose.Schema({
     tags: {
         type: Array,
         required: [true, 'A tag has to be added']
-    }
+    },
+    registeredUsers: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        default: []
+    }]
 })
 
-const sessionModel = mongoose.models.sessionModel || mongoose.model('sessionModels', sessionSchema)
+const sessionModels = mongoose.models.sessionModels || mongoose.model('sessionModels', sessionSchema)
 
-export default sessionModel
+export default sessionModels

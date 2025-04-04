@@ -7,7 +7,7 @@ dotenv.config()
 
 import { connectToDB } from "@utils/database";
 
-const handler = NextAuth({
+export const authOptions = {
     providers:[
         GoogleProvider({
             clientId: process.env.GOOGLE_CLIENT_ID,
@@ -21,6 +21,7 @@ const handler = NextAuth({
                 email: session.user.email
             })
             session.user.id = sessionUser._id.toString();
+            session.user.registeredEvents = sessionUser.registeredEvents
             return session;
         
     },
@@ -31,10 +32,13 @@ const handler = NextAuth({
                     email: profile.email
                 })
                 if(!userExists){
+                    const totalUsers = await User.countDocuments({})
                     await User.create({
                         email: profile.email,
-                        username: profile.name.replaceAll(" ", "").toLowerCase(),
-                        image: profile.picture
+                        username: profile.name,
+                        image: profile.picture,
+                        registeredEvents: [],
+                        rank: totalUsers+1
                     })
                 }
                 return true
@@ -45,6 +49,9 @@ const handler = NextAuth({
             }
         }
     }
-})
+}
+
+const handler = NextAuth(authOptions)
+
 
 export {handler as GET, handler as POST}

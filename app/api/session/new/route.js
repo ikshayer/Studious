@@ -1,5 +1,5 @@
 import { connectToDB } from '@utils/database'
-import sessionModel from '@models/sessionSchema'
+import sessionModels from '@models/sessionSchema'
 
 export const POST = async (req, res) =>{
     const  {userId, location, zoomLink, date, time, description, tags } = await req.json()
@@ -7,7 +7,7 @@ export const POST = async (req, res) =>{
         await connectToDB()
 
         if(location){
-        const sessionCreate = await sessionModel.create({
+        const sessionCreate = await sessionModels.create({
             creator: userId,
             location: location,
             date: date,
@@ -22,7 +22,7 @@ export const POST = async (req, res) =>{
         )
         }
         if(zoomLink){
-            const sessionCreate = await sessionModel.create({
+            const sessionCreate = await sessionModels.create({
                 creator: userId,
                 zoomLink: zoomLink,
                 date: date,
