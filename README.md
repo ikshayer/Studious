@@ -22,11 +22,11 @@ Studious is a platform that makes it easier for students, or really anyone, to s
 
 # Demo
 
-![Feed](./demoVideos/StudiousClip1.mp4)
-![Registration](./demoVideos/StudiousClip2.mp4)
-![Create](./demoVideos/StudiousClip3.mp4)
-![My Profile](./demoVideos/StudiousClip4.mp4)
-![Other's Profile](./demoVideos/StudiousClip5.mp4)
+![Feed](./demoVideos/StudiousClip1.gif)
+![Registration](./demoVideos/StudiousClip2.gif)
+![Create](./demoVideos/StudiousClip3.gif)
+![My Profile](./demoVideos/StudiousClip4.gif)
+![Other's Profile](./demoVideos/StudiousClip5.gif)
 
 ## Installation
 
